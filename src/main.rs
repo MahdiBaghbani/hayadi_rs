@@ -2,6 +2,16 @@ use teloxide::{dispatching::dialogue::InMemStorage, prelude::*};
 use tracing_subscriber::{EnvFilter, fmt, prelude::*};
 use tracing_subscriber::filter::LevelFilter;
 
+use database::sea_orm::DatabaseConnection;
+
+use crate::configs::Config;
+use crate::databases::setup_database;
+
+mod configs;
+mod constants;
+mod databases;
+mod utils;
+
 type MyDialogue = Dialogue<State, InMemStorage<State>>;
 type HandlerResult = Result<(), Box<dyn std::error::Error + Send + Sync>>;
 
@@ -36,6 +46,12 @@ async fn main() {
     let filtered_layer = fmt::layer().with_level(true).with_filter(filter);
 
     tracing_subscriber::registry().with(filtered_layer).init();
+
+    // load application configuration from .env file.
+    let configs: Config = Config::new();
+
+    // setup database.
+    let db_connection: DatabaseConnection = setup_database(&configs).await;
 
     log::info!("Starting throw dice bot...");
 
