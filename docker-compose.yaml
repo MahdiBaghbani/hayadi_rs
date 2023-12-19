@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  postgres:
+    image: "postgres:16"
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      POSTGRES_DB: "hayadi"
+      POSTGRES_PASSWORD: "hayadi"
+      POSTGRES_USER: "hayadi"
+    ports:
+      - "5432:5432"
