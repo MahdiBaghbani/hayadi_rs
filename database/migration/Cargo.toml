@@ -1,0 +1,20 @@
+[package]
+name = "migration"
+version = "0.1.0"
+authors = ["Mahdi Baghbani <mahdi-baghbani@azadehafzar.io>"]
+description = "Hayadi Datatbase Migrations"
+license = "AGPL-3.0-only"
+edition = "2021"
+publish = false
+
+[lib]
+name = "migration"
+path = "src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+# Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+# View the list of supported features at
+# https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+async-std = { version = "1.12", features = ["attributes", "tokio1"] }
+sea-orm-migration = { version = "0.12", features = ["runtime-tokio-rustls", "sqlx-postgres"] }

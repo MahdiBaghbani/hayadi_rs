@@ -1,0 +1,58 @@
+[package]
+name = "hayadi"
+version = "0.1.0"
+authors = ["Mahdi Baghbani <mahdi.baghbani1@gmail.com>"]
+description = "(Ha)ssan (Ya)shar Mah(di)"
+keywords = ["telegram", "bot", "ai", "telegram-bot", "dating"]
+categories = ["web-programming", "api-bindings", "asynchronous"]
+license = "AGPL-3.0-only"
+homepage = "https://github.com/MahdiBaghbani/hayadi"
+repository = "https://github.com/MahdiBaghbani/hayadi"
+edition = "2021"
+publish = false
+
+[profile.release]
+# do not perform backtrace for panic on release builds.
+panic = "abort"
+# perform optimizations on all codegen units.
+codegen-units = 1
+# "s" for normal optimize or "z" to optimize "aggressively" for size.
+opt-level = "z"
+# enable link time optimization.
+lto = "fat"
+# Incremental compilation causes rustc to save additional information to disk which will be reused when recompiling
+# the crate, improving re-compile times. The additional information is stored in the target directory.
+incremental = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = [".", "database", "database/entity", "database/migration"]
+
+[dependencies]
+dotenvy = "0.15"
+log = "0.4"
+tracing = "0.1"
+
+[dependencies.teloxide]
+version = "0.12"
+features = [
+    "macros",
+    "rustls",
+]
+
+[dependencies.tokio]
+version = "1.35"
+features = [
+    "rt-multi-thread",
+    "macros",
+]
+
+[dependencies.tracing-subscriber]
+version = "0.3"
+features = [
+    "env-filter",
+    "std",
+]
+
+[dev-dependencies]

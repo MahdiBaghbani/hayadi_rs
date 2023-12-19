@@ -1,0 +1,38 @@
+[package]
+name = "entity"
+version = "0.1.0"
+authors = ["Mahdi Baghbani <mahdi-baghbani@azadehafzar.io>"]
+description = "Hayadi Database Entities"
+license = "AGPL-3.0-only"
+edition = "2021"
+publish = false
+
+[lib]
+name = "entity"
+path = "src/mod.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+# Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+# View the list of supported features at
+# https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+
+[dependencies.sea-orm]
+version = "0.12"
+features = [
+    "macros",
+    "runtime-tokio-rustls",
+    "sqlx-postgres",
+]
+
+[dependencies.serde]
+version = "1.0"
+features = [
+    "derive",
+]
+
+[dependencies.uuid]
+version = "1.6"
+features = [
+    "v4",
+]
