@@ -30,6 +30,10 @@ incremental = false
 members = [".", "database", "database/entity", "database/migration"]
 
 [dependencies]
+database = { path = "database" }
+entity = { path = "database/entity" }
+migration = { path = "database/migration" }
+
 dotenvy = "0.15"
 log = "0.4"
 tracing = "0.1"

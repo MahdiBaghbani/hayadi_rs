@@ -1188,8 +1188,11 @@ dependencies = [
 name = "hayadi"
 version = "0.1.0"
 dependencies = [
+ "database",
  "dotenvy",
+ "entity",
  "log",
+ "migration",
  "teloxide",
  "tokio",
  "tracing",
